@@ -30,7 +30,7 @@ namespace ExpensesManager.Services
 
         public IEnumerable<Expense> GetAllExpenses()
         {
-            return _context.Expenses.OrderBy(x => x.Date);
+            return _context.Expenses.OrderBy(x => x.Date).ToList();
         }
     }
 }

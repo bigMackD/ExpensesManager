@@ -35,8 +35,8 @@ namespace ExpensesManager
             });
 
             services.AddDbContext<ExpensesManagerDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("ExpansesManager")));
-           // services.AddScoped<IExpenseData, SqlExpenseData>();
-            services.AddSingleton<IExpenseData, MemoryExpansesData>();
+           services.AddScoped<IExpenseData, SqlExpenseData>();
+           // services.AddSingleton<IExpenseData, MemoryExpansesData>();
             services.AddMvc();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
