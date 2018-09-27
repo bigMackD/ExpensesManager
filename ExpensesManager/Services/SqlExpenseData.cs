@@ -11,6 +11,11 @@ namespace ExpensesManager.Services
     {
         private ExpensesManagerDbContext _context;
 
+        public SqlExpenseData(ExpensesManagerDbContext context)
+        {
+            _context = context;
+        }
+    
         public Expense Add(Expense newExpense)
         {
             _context.Expenses.Add(newExpense);

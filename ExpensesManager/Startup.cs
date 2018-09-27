@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExpensesManager.Data;
+using ExpensesManager.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,12 +17,12 @@ namespace ExpensesManager
 {
     public class Startup
     {
+        private IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -31,6 +34,10 @@ namespace ExpensesManager
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<ExpensesManagerDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("ExpansesManager")));
+           // services.AddScoped<IExpenseData, SqlExpenseData>();
+            services.AddSingleton<IExpenseData, MemoryExpansesData>();
+            services.AddMvc();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

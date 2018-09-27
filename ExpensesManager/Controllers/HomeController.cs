@@ -5,14 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ExpensesManager.Models;
+using ExpensesManager.Services;
 
 namespace ExpensesManager.Controllers
 {
     public class HomeController : Controller
     {
+        IExpenseData _expenseData;
+        public HomeController(IExpenseData expenseData)
+        {
+            _expenseData = expenseData;
+        }
         public IActionResult Index()
         {
-            return View();
+            var model = _expenseData.GetAllExpenses();
+            return View(model);
         }
 
         public IActionResult About()
