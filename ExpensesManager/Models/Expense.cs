@@ -19,10 +19,10 @@ namespace ExpensesManager.Models
             [DataType(DataType.Currency)]
             [Column(TypeName = "decimal(10,2)")]
             public decimal Amount { get; set; }
-
+            
             [Required]
-            public DateTime? Date { get; set; }
-
+            public DateTime Date { get; set; }
+     
             [Required]
             public CategoryType Category { get; set; }
     }

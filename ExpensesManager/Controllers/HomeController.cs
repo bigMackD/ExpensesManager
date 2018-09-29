@@ -22,11 +22,9 @@ namespace ExpensesManager.Controllers
             return View(model);
         }
 
-        public IActionResult About()
+        public IActionResult Details(int id)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+           return View(_expenseData.Get(id));
         }
 
         public IActionResult Contact()
