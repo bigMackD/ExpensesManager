@@ -1,0 +1,25 @@
+﻿@model Expense
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+<h2>@Model.Name</h2>
+<table class="table">
+    <tr>
+        <td>@Html.LabelFor(x => x.Category)</td>
+        <td>@Model.Category</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x => x.Amount)</td>
+        <td>@Model.Amount</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x => x.Date)</td>
+        <td>@Model.Date.ToShortDateString()</td>
+    </tr>
+</table>
+
+<p></p>
+<p></p>
+
+

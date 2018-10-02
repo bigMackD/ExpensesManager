@@ -14,14 +14,14 @@
     </tr>
     @foreach (var expense in Model)
     {
-    <tr>
-        <td>@expense.Name</td>
-        <td>@expense.Amount</td>
-        <td>@expense.Date.ToShortDateString()</td>
-        <td>@expense.Category</td>
-        <td> <button class="btn btn-danger">@Html.ActionLink("Details", "Details", new {id = expense.Id })</button></td>
+        <tr>
+            <td>@expense.Name</td>
+            <td>@expense.Amount</td>
+            <td>@expense.Date.ToShortDateString()</td>
+            <td>@expense.Category</td>
+            <td> <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = expense.Id })</button></td>
 
-    </tr>
+        </tr>
     }
 </table>
-
+<td> <button class="btn btn-default">@Html.ActionLink("Create", "Create")</button></td>

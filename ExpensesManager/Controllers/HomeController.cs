@@ -27,6 +27,18 @@ namespace ExpensesManager.Controllers
            return View(_expenseData.Get(id));
         }
 
+        [HttpPost]
+        public IActionResult Create(Expense expense)
+        {
+            var newExpense = _expenseData.Add(expense);
+            return RedirectToAction("Details", new { id = expense.Id });
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
