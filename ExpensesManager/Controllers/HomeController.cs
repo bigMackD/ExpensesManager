@@ -30,24 +30,18 @@ namespace ExpensesManager.Controllers
         [HttpPost]
         public IActionResult Create(Expense expense)
         {
-            var newExpense = _expenseData.Add(expense);
-            return RedirectToAction("Details", new { id = expense.Id });
+            if (ModelState.IsValid)
+            {
+                var newExpense = _expenseData.Add(expense);
+                return RedirectToAction("Details", new { id = expense.Id });
+            }
+            return View();
         }
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            CategoryType category = new CategoryType();
+            ViewBag.Types = category;
             return View();
         }
 

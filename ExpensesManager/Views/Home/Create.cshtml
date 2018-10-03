@@ -4,20 +4,28 @@
 }
 
 <h2>Create</h2>
+
 <form method="post">
-    <label asp-for="Name"></label>
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
-
-    <label asp-for="Category"></label>
-    <select asp-for="Category" 
-                   asp-items="@Html.GetEnumSelectList<CategoryType>()" />
-    <span asp-validation-for="Category"></span>
-
-    <label asp-for="Amount"></label>
-    <input asp-for="Amount" />
-    <span asp-validation-for="Amount"></span>
-
-    <input type="submit" value="Create"/>
+    <table class="table">
+        <tr>
+            <td><label asp-for="Name"></label></td>
+            <td> <input asp-for="Name" /></td>
+            <td><span asp-validation-for="Name"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Category"></label></td>
+            <td>
+                <select asp-for="Category"
+                        asp-items="ViewBag.Types" />
+            </td>
+            <td><span asp-validation-for="Category"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Amount"></label></td>
+            <td> <input asp-for="Amount" /></td>
+            <td><span asp-validation-for="Amount"></span></td>
+        </tr>
+    </table>
+        <input type="submit" value="Create" />
 </form>
 
