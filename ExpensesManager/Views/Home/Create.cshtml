@@ -25,6 +25,10 @@
             <td> <input asp-for="Amount" /></td>
             <td><span asp-validation-for="Amount"></span></td>
         </tr>
+        <tr>
+            <td><label asp-for="Date"></label></td>
+            <td>@Html.TextBoxFor(x => x.Date, new { type = "date"})</td>
+        </tr>
     </table>
         <input type="submit" value="Create" class="btn btn-warning" />
 </form>
