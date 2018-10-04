@@ -11,5 +11,6 @@ namespace ExpensesManager.Services
         IEnumerable<Expense> GetAllExpenses();
         Expense Get(int id);
         Expense Add(Expense newExpense);
+        void Remove(Expense expense);
     }
 }

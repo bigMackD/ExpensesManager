@@ -32,5 +32,11 @@ namespace ExpensesManager.Services
         {
             return _context.Expenses.OrderBy(x => x.Date).ToList();
         }
+
+        public void Remove(Expense expense)
+        {
+            _context.Expenses.Remove(expense);
+            _context.SaveChanges();
+        }
     }
 }

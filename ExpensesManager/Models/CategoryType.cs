@@ -7,6 +7,6 @@ namespace ExpensesManager.Models
 {
     public enum CategoryType
     {
-        entertaiment, education, travel, food
+        Entertaiment, Education, Travel, Food
     }
 }

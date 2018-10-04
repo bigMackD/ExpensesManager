@@ -19,9 +19,12 @@
             <td>@expense.Amount</td>
             <td>@expense.Date.ToShortDateString()</td>
             <td>@expense.Category</td>
-            <td> <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = expense.Id })</button></td>
+            <td>@Html.ActionLink("Details", "Details", new { id = expense.Id }, new { @class = "btn btn-primary" })</td>
+            <td>@Html.ActionLink("Remove", "Remove", new { id = expense.Id }, new { @class = "btn btn-danger" })</td>
 
         </tr>
     }
 </table>
-<td> <button class="btn btn-default">@Html.ActionLink("Create", "Create")</button></td>
+<td>@Html.ActionLink("Create", "Create", null, null, new { @class = "btn btn-warning" })</td>
+
+

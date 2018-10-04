@@ -13,7 +13,6 @@ namespace ExpensesManager.Controllers
     public class HomeController : Controller
     {
         IExpenseData _expenseData;
-        private CategoryType _categoryType = new CategoryType();
 
         public HomeController(IExpenseData expenseData)
         {
@@ -40,11 +39,25 @@ namespace ExpensesManager.Controllers
             }
             return View();
         }
+
         [HttpGet]
         public IActionResult Create()
         {
-           // CategoryType[] category = (CategoryType[])Enum.GetValues(typeof(CategoryType));
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(Expense expense)
+        {
+            _expenseData.Remove(expense);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Remove(int id)
+        {
+            var expenseToRemove = _expenseData.Get(id);
+            return View(expenseToRemove);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
