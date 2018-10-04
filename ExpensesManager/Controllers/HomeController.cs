@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ExpensesManager.Models;
 using ExpensesManager.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ExpensesManager.Controllers
 {
     public class HomeController : Controller
     {
         IExpenseData _expenseData;
+        private CategoryType _categoryType = new CategoryType();
+
         public HomeController(IExpenseData expenseData)
         {
             _expenseData = expenseData;
@@ -40,8 +43,7 @@ namespace ExpensesManager.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            CategoryType category = new CategoryType();
-            ViewBag.Types = category;
+           // CategoryType[] category = (CategoryType[])Enum.GetValues(typeof(CategoryType));
             return View();
         }
 

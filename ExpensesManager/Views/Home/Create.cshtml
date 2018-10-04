@@ -16,9 +16,9 @@
             <td><label asp-for="Category"></label></td>
             <td>
                 <select asp-for="Category"
-                        asp-items="ViewBag.Types" />
+                        asp-items="@Html.GetEnumSelectList<CategoryType>()"> </select>
             </td>
-            <td><span asp-validation-for="Category"></span></td>
+            <td><span asp-validation-for="Category" ></span></td>
         </tr>
         <tr>
             <td><label asp-for="Amount"></label></td>
