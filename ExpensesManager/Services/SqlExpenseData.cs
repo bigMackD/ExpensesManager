@@ -23,6 +23,13 @@ namespace ExpensesManager.Services
             return newExpense;
         }
 
+        public void Edit(Expense editedExpense)
+        {
+            _context.Expenses.Remove(_context.Expenses.FirstOrDefault(x => x.Id == editedExpense.Id));
+            _context.Expenses.Add(editedExpense);
+            _context.SaveChanges();
+        }
+
         public Expense Get(int id)
         {
             return _context.Expenses.FirstOrDefault(x => x.Id == id);

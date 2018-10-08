@@ -60,6 +60,20 @@ namespace ExpensesManager.Controllers
             return View(expenseToRemove);
         }
 
+        [HttpPost]
+        public IActionResult Edit (Expense expense)
+        {
+            _expenseData.Edit(expense);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit (int id)
+        {
+            var expenseToBeEdited = _expenseData.Get(id);
+            return View(expenseToBeEdited);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

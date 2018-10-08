@@ -18,6 +18,11 @@ namespace ExpensesManager.Services
             throw new NotImplementedException();
         }
 
+        public void Edit(Expense editedExpense)
+        {
+            throw new NotImplementedException();
+        }
+
         public Expense Get(int id)
         {
             return _expenses.FirstOrDefault(x => x.Id == id);

@@ -1,9 +1,9 @@
 ﻿@model Expense
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 <form method="post">
     <table class="table">
@@ -16,9 +16,9 @@
             <td><label asp-for="Category"></label></td>
             <td>
                 <select asp-for="Category"
-                        asp-items="@Html.GetEnumSelectList<CategoryType>()"> </select>
+                        asp-items="@Html.GetEnumSelectList<CategoryType>()"></select>
             </td>
-            <td><span asp-validation-for="Category" ></span></td>
+            <td><span asp-validation-for="Category"></span></td>
         </tr>
         <tr>
             <td><label asp-for="Amount"></label></td>
@@ -27,9 +27,9 @@
         </tr>
         <tr>
             <td><label asp-for="Date"></label></td>
-            <td>@Html.TextBoxFor(x => x.Date, new { type = "date"})</td>
+            <td>@Html.TextBoxFor(x => x.Date, new { type = "date" })</td>
         </tr>
     </table>
-        <input type="submit" value="Create" class="btn btn-success" />
+    <input type="submit" value="Edit" class="btn btn-warning" />
 </form>
 
