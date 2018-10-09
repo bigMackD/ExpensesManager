@@ -4,28 +4,12 @@
 }
 
 <h2>Index</h2>
-<table class="table">
-    <tr>
-        <th>@Html.LabelFor(x => x.FirstOrDefault().Name)</th>
-        <th>@Html.LabelFor(x => x.FirstOrDefault().Amount)</th>
-        <th>@Html.LabelFor(x => x.FirstOrDefault().Date)</th>
-        <th>@Html.LabelFor(x => x.FirstOrDefault().Category)</th>
-        <th>Action</th>
-    </tr>
-    @foreach (var expense in Model)
-    {
-    <tr>
-        <td>@expense.Name</td>
-        <td>@expense.Amount</td>
-        <td>@expense.Date.ToShortDateString()</td>
-        <td>@expense.Category</td>
-        <td>@Html.ActionLink("Details", "Details", new { id = expense.Id }, new { @class = "btn btn-primary" })</td>
-        <td>@Html.ActionLink("Remove", "Remove", new { id = expense.Id }, new { @class = "btn btn-danger" })</td>
-        <td>@Html.ActionLink("Edit", "Edit", new { id = expense.Id }, new { @class = "btn btn-warning" })</td>
-
-    </tr>
-    }
-</table>
+<span>Filter by expense</span>
+<select 
+        asp-items="@Html.GetEnumSelectList<CategoryType>()"></select>
+@{
+    Html.RenderPartial("_ExpensesList", ViewData.Model);
+}
 <td>@Html.ActionLink("Create", "Create", null, null, new { @class = "btn btn-success" })</td>
 
 

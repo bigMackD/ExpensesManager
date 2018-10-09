@@ -18,6 +18,8 @@ namespace ExpensesManager.Services
     
         public Expense Add(Expense newExpense)
         {
+           var maxId = _context.Expenses.Max(x => x.Id);
+            newExpense.Id = maxId;
             _context.Expenses.Add(newExpense);
             _context.SaveChanges();
             return newExpense;
