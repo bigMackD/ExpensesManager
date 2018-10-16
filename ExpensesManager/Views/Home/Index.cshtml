@@ -5,11 +5,31 @@
 
 <h2>Index</h2>
 <span>Filter by expense</span>
-<select 
+<select id="filterSelect"
         asp-items="@Html.GetEnumSelectList<CategoryType>()"></select>
-@{
-    Html.RenderPartial("_ExpensesList", ViewData.Model);
-}
+<div id="expensesListContainer">
+    @{
+        Html.Partial("_ExpensesList", ViewData.Model);
+    }
+</div>
 <td>@Html.ActionLink("Create", "Create", null, null, new { @class = "btn btn-success" })</td>
 
+@section Scripts{
+    <script>
+    $(function () {
+        var filterSelect = $("#filterSelect");
+        filterSelect.change(function () {
+            var filterValue = filterSelect.val();
+            $.get(
+                {
+                    url: '@Url.Action("GetExpensesList")' + '?categoryId=' + filterValue,
+                    success: function (data) {
+                        $("#expensesListContainer").html(data);
+                    }
+                })
+        })
+    })
+
+    </script>
+}
 

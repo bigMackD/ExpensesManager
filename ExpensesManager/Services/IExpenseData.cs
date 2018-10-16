@@ -13,5 +13,6 @@ namespace ExpensesManager.Services
         Expense Add(Expense newExpense);
         void Remove(Expense expense);
         void Edit(Expense editedExpense);
+        object GetExpensesByCategory(int value);
     }
 }

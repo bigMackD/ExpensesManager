@@ -33,6 +33,11 @@ namespace ExpensesManager.Services
             return _expenses.OrderBy(x => x.Name).ToList();
         }
 
+        public object GetExpensesByCategory(int value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remove(Expense expense)
         {
             throw new NotImplementedException();

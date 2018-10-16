@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ExpensesManager.Models;
 using ExpensesManager.Services;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ExpensesManager.Controllers
 {
@@ -72,6 +67,20 @@ namespace ExpensesManager.Controllers
         {
             var expenseToBeEdited = _expenseData.Get(id);
             return View(expenseToBeEdited);
+        }
+
+        public IActionResult GetExpensesList(int? categoryId)
+        {
+            if (categoryId.HasValue)
+            {
+                var model = _expenseData.GetExpensesByCategory(categoryId.Value);
+                return PartialView("_ExpensesList", model);
+            }
+            else
+            {
+                var model = _expenseData.GetAllExpenses();
+                return PartialView("_ExpensesList", model);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

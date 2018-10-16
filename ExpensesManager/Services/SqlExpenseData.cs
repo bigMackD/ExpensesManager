@@ -1,9 +1,7 @@
 ﻿using ExpensesManager.Data;
 using ExpensesManager.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpensesManager.Services
 {
@@ -18,8 +16,6 @@ namespace ExpensesManager.Services
     
         public Expense Add(Expense newExpense)
         {
-           var maxId = _context.Expenses.Max(x => x.Id);
-            newExpense.Id = maxId;
             _context.Expenses.Add(newExpense);
             _context.SaveChanges();
             return newExpense;
@@ -40,6 +36,11 @@ namespace ExpensesManager.Services
         public IEnumerable<Expense> GetAllExpenses()
         {
             return _context.Expenses.OrderBy(x => x.Date).ToList();
+        }
+
+        public object GetExpensesByCategory(int value)
+        {
+            return _context.Expenses.Where(x => (int)x.Category == value).ToList();
         }
 
         public void Remove(Expense expense)
