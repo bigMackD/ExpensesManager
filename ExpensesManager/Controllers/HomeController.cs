@@ -83,6 +83,12 @@ namespace ExpensesManager.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetModalChart()
+        {
+            return PartialView("_ChartPopup");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h2>Index</h2>
 <span>Filter by expense</span>
 <select id="filterSelect"
@@ -12,7 +11,16 @@
         Html.Partial("_ExpensesList", ViewData.Model);
     }
 </div>
+
+<div id="modal" class="modal fade">
+    <div class="modal-content">
+        @*@Html.Partial("_ChartPopup");*@
+        halo
+    </div>
+</div>
+
 <td>@Html.ActionLink("Create", "Create", null, null, new { @class = "btn btn-success" })</td>
+<td><button id="modalBtn">Modal</button></td>
 
 @section Scripts{
     <script>
@@ -29,7 +37,20 @@
                 })
         })
     })
-
+        </script>
+    <script>
+        $(document).ready(function () {
+            $('#modalBtn').click(function () {
+                jQuery('#modal').modal(
+                    {
+                        height: 100,
+                        width: 1000
+                    },"show");
+            })
+        })
     </script>
+    
+        
+    
 }
 
