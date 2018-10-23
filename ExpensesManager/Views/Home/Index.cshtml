@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Index</h2>
-<span>Filter by expense</span>
-<select id="filterSelect"
+<h2>Expenses</h2>
+<h3>Filter by category</h3>
+<select id="filterSelect" class="form-control"
         asp-items="@Html.GetEnumSelectList<CategoryType>()"></select>
 <div id="expensesListContainer">
     @{
@@ -13,7 +13,7 @@
 </div>
 
 <div id="modal" class="modal fade">
-    <div id="modalContainer" class="modal-content">
+    <div id="modalContainer" class="modal-dialog modal-dialog-centered">
         @Html.Partial("_ChartPopup");
     </div>
 </div>
@@ -35,7 +35,15 @@
                     }
                 })
         })
-    })
+        })
+        //$("#modalContainer").on('show.bs.modal', function () {
+        //    $(this).find('modal.body').css({
+        //        width: 'auto',
+        //        height: 'auto',
+        //        'max-height': '100%'
+
+        //    })
+        //});
     </script>
 
     <script>

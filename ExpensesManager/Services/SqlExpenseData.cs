@@ -67,6 +67,7 @@ namespace ExpensesManager.Services
 
         public Dictionary<CategoryType,decimal> GetExpensesByMonth(int month)
         {
+            month++;
             Dictionary<CategoryType, decimal> raport = new Dictionary<CategoryType, decimal>();
              raport = _context.Expenses
                         .Where(x =>x.Date.Month == month)

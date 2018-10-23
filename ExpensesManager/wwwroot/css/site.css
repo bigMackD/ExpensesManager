@@ -11,7 +11,15 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
-
+#chartContainer {
+    background-color:aqua;
+}
+.modalStyle{
+    text-align: center;
+    width: 500px;
+    height: 500px;
+    background-color: aquamarine;
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;

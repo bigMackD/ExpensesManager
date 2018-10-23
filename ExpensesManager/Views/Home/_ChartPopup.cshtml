@@ -4,44 +4,59 @@
 *@
  
 
-<div id="chartContainer">
-    <button class="btn btn-info" id="generate">Generate chart</button>
+<div class="modal-content" id="myModal">
+    <div class="modal-header">
+        <div class="modal-title">Raport</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body"><div id="chartContainer"></div></div>
+    <div id="modal-footer">
+        <button class="btn btn-info" id="generate">Generate chart</button>
+        <select asp-items="@Html.GetEnumSelectList<Months>()" id="monthSelect" class="form-control"></select>
+    </div>
 </div>
-<script src="~/lib/jquery.canvasjs.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#generate").click(function () {
-            $.ajax({
-                type: "GET",
-                url: "Home/GetChartData" + "?month=" + 9,
-                contentType: "application/json",
-                dataType: "json",
-                success: function (data) {
-                    var ChartKeys = Object.keys(data);
-                    var ChartValues = Object.values(data);
-                    var length = ChartKeys.length;
-                    var arr = new Array();
-                    for (var i = 0; i < length; i++) {
-                        arr[i] =
-                        {
-                            label: ChartKeys[i],
-                                y: ChartValues[i]
-                        };
-                    }
-                    var chart = new CanvasJS.Chart("chartContainer",
-                        {
-                            theme: "light1",
-                            animationEnabled: true,
-                            title: { text: "Monthly Expenses" },
-                            data: [{
-                                type: "column",
-                                dataPoints: arr
+    <script src="~/lib/jquery.canvasjs.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#generate").click(function () {
+                $("#myModal").modal('handleUpdate');
+                $("#modal").modal('handleUpdate');
+
+                var monthSelectValue = $("#monthSelect").val();
+                $.ajax({
+                    type: "GET",
+                    url: "Home/GetChartData" + "?month=" + monthSelectValue,
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        var ChartKeys = Object.keys(data);
+                        var ChartValues = Object.values(data);
+                        var length = ChartKeys.length;
+                        var arr = new Array();
+                        for (var i = 0; i < length; i++) {
+                            arr[i] =
+                                {
+                                    label: ChartKeys[i],
+                                    y: ChartValues[i]
+                                };
+                        }
+                        var chart = new CanvasJS.Chart("chartContainer",
+                            {
+
+                                animationEnabled: true,
+                                title: { text: "Monthly Expenses" },
+                                data: [{
+                                    color: "#4BB3D6",
+                                    type: "column",
+                                    dataPoints: arr
                                 }]
-                        });
-                    chart.render();
-                }
-               
+                            });
+                        chart.render();
+                    }
+
+                })
             })
         })
-    })
-</script>
+    </script>
