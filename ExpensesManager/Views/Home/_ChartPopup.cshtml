@@ -17,27 +17,31 @@
                 contentType: "application/json",
                 dataType: "json",
                 success: function (data) {
-                    var keys = Object.keys(data);
+                    var ChartKeys = Object.keys(data);
+                    var ChartValues = Object.values(data);
+                    var length = ChartKeys.length;
+                    var arr = new Array();
+                    for (var i = 0; i < length; i++) {
+                        arr[i] =
+                        {
+                            label: ChartKeys[i],
+                                y: ChartValues[i]
+                        };
+                    }
+                    var chart = new CanvasJS.Chart("chartContainer",
+                        {
+                            theme: "light1",
+                            animationEnabled: true,
+                            title: { text: "Monthly Expenses" },
+                            data: [{
+                                type: "column",
+                                dataPoints: arr
+                                }]
+                        });
+                    chart.render();
                 }
                
             })
         })
-        //var chart = new CanvasJS.Chart("chartContainer",
-        //    {
-        //        theme: "light1",
-        //        animationEnabled: false,
-        //        title: { text: "Monthly Expenses" },
-        //        data: [{
-        //            type: "column",
-        //            dataPoints: [
-        //                { label: "Entertaiment", y:30 },
-        //                { label: "Education", y: 50 },
-        //                { label: "Travel", y: 10 },
-        //                { label: "Food", y: 15 }
-        //            ]
-        //        }
-        //        ]
-        //    });
-        //chart.render();
     })
 </script>

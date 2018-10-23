@@ -65,23 +65,14 @@ namespace ExpensesManager.Services
             _context.SaveChanges();
         }
 
-        public ExpenseViewModel GetExpensesByMonth(int month)
+        public Dictionary<CategoryType,decimal> GetExpensesByMonth(int month)
         {
             Dictionary<CategoryType, decimal> raport = new Dictionary<CategoryType, decimal>();
-            raport = _context.Expenses
+             raport = _context.Expenses
                         .Where(x =>x.Date.Month == month)
                             .GroupBy(x => x.Category)
                                  .ToDictionary(x => x.Key, x => x.Sum(n => n.Amount));
-
-            return new ExpenseViewModel
-            {
-                //Id = x.Id,
-                //Amount = x.Amount,
-                //Date = x.Date,
-                //Name = x.Name,
-                //Category = x.Category,
-                ChartData = raport
-            };
+            return raport;
         }
     }
 }

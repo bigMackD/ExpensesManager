@@ -15,6 +15,6 @@ namespace ExpensesManager.Services
         void Remove(Expense expense);
         void Edit(Expense editedExpense);
         object GetExpensesByCategory(int value);
-        ExpenseViewModel GetExpensesByMonth(int month);
+        Dictionary<CategoryType,decimal> GetExpensesByMonth(int month);
     }
 }

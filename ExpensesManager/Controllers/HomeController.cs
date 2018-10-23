@@ -93,7 +93,7 @@ namespace ExpensesManager.Controllers
         public JsonResult GetChartData(int month)
         {
             var model = _expenseData.GetExpensesByMonth(month);
-            return new JsonResult(month);
+            return new JsonResult(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
