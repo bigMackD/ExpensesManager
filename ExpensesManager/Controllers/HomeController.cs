@@ -89,6 +89,13 @@ namespace ExpensesManager.Controllers
             return PartialView("_ChartPopup");
         }
 
+        [HttpGet]
+        public JsonResult GetChartData(int month)
+        {
+            var model = _expenseData.GetExpensesByMonth(month);
+            return new JsonResult(month);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
