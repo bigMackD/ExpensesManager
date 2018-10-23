@@ -2,5 +2,42 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+ 
 
-<div>THIS IS MODAL POPUP!</div>
+<div id="chartContainer">
+    <button class="btn btn-info" id="generate">Generate chart</button>
+</div>
+<script src="~/lib/jquery.canvasjs.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#generate").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "Home/GetChartData" + "?month=" + 9,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    var keys = Object.keys(data);
+                }
+               
+            })
+        })
+        //var chart = new CanvasJS.Chart("chartContainer",
+        //    {
+        //        theme: "light1",
+        //        animationEnabled: false,
+        //        title: { text: "Monthly Expenses" },
+        //        data: [{
+        //            type: "column",
+        //            dataPoints: [
+        //                { label: "Entertaiment", y:30 },
+        //                { label: "Education", y: 50 },
+        //                { label: "Travel", y: 10 },
+        //                { label: "Food", y: 15 }
+        //            ]
+        //        }
+        //        ]
+        //    });
+        //chart.render();
+    })
+</script>

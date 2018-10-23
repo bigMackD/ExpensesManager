@@ -1,4 +1,4 @@
-﻿@model List<Expense>
+﻿@model List<ExpensesManager.ViewModels.ExpenseViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -13,14 +13,14 @@
 </div>
 
 <div id="modal" class="modal fade">
-    <div class="modal-content">
-        @*@Html.Partial("_ChartPopup");*@
+    <div id="modalContainer" class="modal-content">
+        @Html.Partial("_ChartPopup");
         halo
     </div>
 </div>
 
 <td>@Html.ActionLink("Create", "Create", null, null, new { @class = "btn btn-success" })</td>
-<td><button id="modalBtn">Modal</button></td>
+<td><button class="btn btn-info" id="modalBtn">Modal</button></td>
 
 @section Scripts{
     <script>
@@ -37,10 +37,19 @@
                 })
         })
     })
-        </script>
+    </script>
+
     <script>
         $(document).ready(function () {
             $('#modalBtn').click(function () {
+                var monthValue = $("#monthSelect").val();
+                $.get(
+                {
+                    url: '@Url.Action("GetModalChart")' + '?month=' + 9,
+                    success: function (data) {
+                        $("#modalContainer").html(data);
+                    }
+                })
                 jQuery('#modal').modal(
                     {
                         height: 100,
@@ -49,8 +58,8 @@
             })
         })
     </script>
-    
-        
-    
+
+
+
 }
 

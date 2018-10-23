@@ -10,26 +10,28 @@
         <tr>
             <td><label asp-for="Name"></label></td>
             <td> <input asp-for="Name" /></td>
-            <td><span asp-validation-for="Name"></span></td>
+            <td><span asp-validation-for="Name", new class="text-danger"></span></td>
         </tr>
         <tr>
             <td><label asp-for="Category"></label></td>
             <td>
                 <select asp-for="Category"
-                        asp-items="@Html.GetEnumSelectList<CategoryType>()"> </select>
+                        asp-items="@Html.GetEnumSelectList<CategoryType>()"></select>
             </td>
-            <td><span asp-validation-for="Category" ></span></td>
+            <td><span asp-validation-for="Category", new class="text-danger"></span></td>
         </tr>
         <tr>
             <td><label asp-for="Amount"></label></td>
             <td> <input asp-for="Amount" /></td>
-            <td><span asp-validation-for="Amount"></span></td>
+            <td><span asp-validation-for="Amount", new class="text-danger"></span></td>
         </tr>
         <tr>
             <td><label asp-for="Date"></label></td>
-            <td>@Html.TextBoxFor(x => x.Date, new { type = "date"})</td>
+            <td>@Html.TextBoxFor(x => x.Date, new { type = "date" })</td>
+            <td><span asp-validation-for="Date",  new class="text-danger"></span></td>
         </tr>
     </table>
-        <input type="submit" value="Create" class="btn btn-success" />
+    <input type="submit" value="Create" class="btn btn-success" />
+    @Html.ActionLink("Back", "Index", null, null, new { @class = "btn btn-info" })
 </form>
 
