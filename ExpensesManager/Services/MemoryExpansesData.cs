@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ExpensesManager.Models;
 
 namespace ExpensesManager.Services
 {
-    public class MemoryExpansesData : IExpenseData
+    public class MemoryExpansesData 
     {
         List<Expense> _expenses = new List<Expense>
         {
@@ -39,6 +38,11 @@ namespace ExpensesManager.Services
         }
 
         public void Remove(Expense expense)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dictionary<CategoryType,List<Expense>> GetExpensesByMonth(int month)
         {
             throw new NotImplementedException();
         }

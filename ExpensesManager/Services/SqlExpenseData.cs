@@ -1,5 +1,6 @@
 ﻿using ExpensesManager.Data;
 using ExpensesManager.Models;
+using ExpensesManager.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,20 +34,54 @@ namespace ExpensesManager.Services
             return _context.Expenses.FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<Expense> GetAllExpenses()
+        public IEnumerable<ExpenseViewModel> GetAllExpenses()
         {
-            return _context.Expenses.OrderBy(x => x.Date).ToList();
+            return _context.Expenses.Select(x => new ExpenseViewModel
+            {
+                Id = x.Id,
+                Amount = x.Amount,
+                Date = x.Date,
+                Name = x.Name,
+                Category = x.Category,
+               
+            }).ToList();
         }
 
         public object GetExpensesByCategory(int value)
         {
-            return _context.Expenses.Where(x => (int)x.Category == value).ToList();
+            return _context.Expenses.Where(x => (int)x.Category == value).Select(x => new ExpenseViewModel
+            {
+                Id = x.Id,
+                Amount = x.Amount,
+                Date = x.Date,
+                Name = x.Name,
+                Category = x.Category,
+            }).ToList();
         }
 
         public void Remove(Expense expense)
         {
             _context.Expenses.Remove(expense);
             _context.SaveChanges();
+        }
+
+        public ExpenseViewModel GetExpensesByMonth(int month)
+        {
+            Dictionary<CategoryType, decimal> raport = new Dictionary<CategoryType, decimal>();
+            raport = _context.Expenses
+                        .Where(x =>x.Date.Month == month)
+                            .GroupBy(x => x.Category)
+                                 .ToDictionary(x => x.Key, x => x.Sum(n => n.Amount));
+
+            return new ExpenseViewModel
+            {
+                //Id = x.Id,
+                //Amount = x.Amount,
+                //Date = x.Date,
+                //Name = x.Name,
+                //Category = x.Category,
+                ChartData = raport
+            };
         }
     }
 }

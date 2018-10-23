@@ -1,4 +1,5 @@
 ﻿using ExpensesManager.Models;
+using ExpensesManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,12 @@ namespace ExpensesManager.Services
 {
     public interface IExpenseData
     {
-        IEnumerable<Expense> GetAllExpenses();
+        IEnumerable<ExpenseViewModel> GetAllExpenses();
         Expense Get(int id);
         Expense Add(Expense newExpense);
         void Remove(Expense expense);
         void Edit(Expense editedExpense);
         object GetExpensesByCategory(int value);
+        ExpenseViewModel GetExpensesByMonth(int month);
     }
 }
