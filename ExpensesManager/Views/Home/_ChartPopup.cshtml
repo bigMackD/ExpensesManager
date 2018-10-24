@@ -11,7 +11,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body"><div id="chartContainer"></div></div>
+    <div class="modal-body"  id="modalBody"><div id="chartContainer"></div></div>
     <div id="modal-footer">
         <button class="btn btn-info" id="generate">Generate chart</button>
         <select asp-items="@Html.GetEnumSelectList<Months>()" id="monthSelect" class="form-control"></select>
@@ -21,10 +21,8 @@
     <script>
         $(document).ready(function () {
             $("#generate").click(function () {
-                $("#myModal").modal('handleUpdate');
-                $("#modal").modal('handleUpdate');
-
                 var monthSelectValue = $("#monthSelect").val();
+               
                 $.ajax({
                     type: "GET",
                     url: "Home/GetChartData" + "?month=" + monthSelectValue,
@@ -35,6 +33,7 @@
                         var ChartValues = Object.values(data);
                         var length = ChartKeys.length;
                         var arr = new Array();
+
                         for (var i = 0; i < length; i++) {
                             arr[i] =
                                 {
@@ -42,6 +41,7 @@
                                     y: ChartValues[i]
                                 };
                         }
+
                         var chart = new CanvasJS.Chart("chartContainer",
                             {
 
@@ -54,6 +54,7 @@
                                 }]
                             });
                         chart.render();
+                        $("#modalBody").css("height", "450px");
                     }
 
                 })
