@@ -1,4 +1,4 @@
-﻿@model Expense
+﻿@model ExpensesManager.ViewModels.EditExpenseViewModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -27,9 +27,10 @@
         </tr>
         <tr>
             <td><label asp-for="Date"></label></td>
-            <td>@Html.TextBoxFor(x => x.Date, new { type = "date" })</td>
+            <td>@Html.TextBoxFor(x => x.Date, new { @type = "date" })</td>
         </tr>
     </table>
+    @Html.ValidationSummary();
     <input type="submit" value="Edit" class="btn btn-warning" />
 </form>
 

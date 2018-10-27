@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ExpensesManager.Models;
 using ExpensesManager.Services;
+using ExpensesManager.ViewModels;
+using ExpensesManager.Validators;
 
 namespace ExpensesManager.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         IExpenseData _expenseData;
 
@@ -25,14 +27,14 @@ namespace ExpensesManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Expense expense)
+        public IActionResult Create(AddExpenseViewModel expense)
         {
             if (ModelState.IsValid)
             {
                 var newExpense = _expenseData.Add(expense);
-                return RedirectToAction("Details", new { id = expense.Id });
+                return RedirectToAction("Details", new { id = newExpense.Id });
             }
-            return View();
+            return View(expense);
         }
 
         [HttpGet]
@@ -56,10 +58,19 @@ namespace ExpensesManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit (Expense expense)
+        public IActionResult Edit (EditExpenseViewModel expense)
         {
-            _expenseData.Edit(expense);
-            return RedirectToAction("Index");
+            Validate(expense);
+            if (ModelState.IsValid)
+            {
+                _expenseData.Edit(expense);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(expense);
+            }
+          
         }
 
         [HttpGet]

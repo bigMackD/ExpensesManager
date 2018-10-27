@@ -1,5 +1,7 @@
 ﻿using ExpensesManager.Data;
 using ExpensesManager.Services;
+using ExpensesManager.Validators;
+using ExpensesManager.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,8 +32,11 @@ namespace ExpensesManager
             });
 
             services.AddDbContext<ExpensesManagerDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("ExpansesManager")));
-           services.AddScoped<IExpenseData, SqlExpenseData>();
-           // services.AddSingleton<IExpenseData, MemoryExpansesData>();
+            services.AddScoped<IExpenseData, SqlExpenseData>();
+            services.AddScoped<IValidator<AddExpenseViewModel>, AddExpenseValidator>();
+            
+            // services.AddSingleton<IExpenseData, MemoryExpansesData>();
+
             services.AddMvc();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

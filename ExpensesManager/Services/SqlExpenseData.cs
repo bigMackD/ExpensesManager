@@ -15,23 +15,51 @@ namespace ExpensesManager.Services
             _context = context;
         }
     
-        public Expense Add(Expense newExpense)
+        public Expense Add(AddExpenseViewModel newExpenseViewModel)
         {
+            Expense newExpense = new Expense
+            {
+                Name = newExpenseViewModel.Name,
+                Amount = newExpenseViewModel.Amount.Value,
+                Category = newExpenseViewModel.Category.Value,
+                Date = newExpenseViewModel.Date.Value,
+            };
+
             _context.Expenses.Add(newExpense);
             _context.SaveChanges();
+
             return newExpense;
         }
 
-        public void Edit(Expense editedExpense)
+        public void Edit(EditExpenseViewModel editedExpense)
         {
             _context.Expenses.Remove(_context.Expenses.FirstOrDefault(x => x.Id == editedExpense.Id));
-            _context.Expenses.Add(editedExpense);
+            Expense newEditedExpense = new Expense
+            {
+                Id = editedExpense.Id,
+                Name = editedExpense.Name,
+                Amount = editedExpense.Amount.Value,
+                Category = editedExpense.Category.Value,
+                Date = editedExpense.Date.Value,
+            };
+            _context.Expenses.Add(newEditedExpense);
             _context.SaveChanges();
         }
 
-        public Expense Get(int id)
+        public EditExpenseViewModel Get(int id)
         {
-            return _context.Expenses.FirstOrDefault(x => x.Id == id);
+            var expense = _context.Expenses.FirstOrDefault(x => x.Id == id);
+
+            var editViewModel = new EditExpenseViewModel()
+            {
+                Id = expense.Id,
+                Amount = expense.Amount,
+                Date = expense.Date,
+                Name = expense.Name,
+                Category = expense.Category
+            };
+
+            return editViewModel;
         }
 
         public IEnumerable<ExpenseViewModel> GetAllExpenses()
