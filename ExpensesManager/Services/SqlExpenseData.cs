@@ -15,7 +15,7 @@ namespace ExpensesManager.Services
             _context = context;
         }
     
-        public Expense Add(AddExpenseViewModel newExpenseViewModel)
+        public AddExpenseViewModel Add(AddExpenseViewModel newExpenseViewModel)
         {
             Expense newExpense = new Expense
             {
@@ -24,11 +24,13 @@ namespace ExpensesManager.Services
                 Category = newExpenseViewModel.Category.Value,
                 Date = newExpenseViewModel.Date.Value,
             };
-
             _context.Expenses.Add(newExpense);
             _context.SaveChanges();
 
-            return newExpense;
+            newExpenseViewModel.Id = newExpense.Id;
+
+
+            return newExpenseViewModel;
         }
 
         public void Edit(EditExpenseViewModel editedExpense)

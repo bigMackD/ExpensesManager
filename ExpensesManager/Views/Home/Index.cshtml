@@ -36,14 +36,6 @@
                 })
         })
         })
-        //$("#modalContainer").on('show.bs.modal', function () {
-        //    $(this).find('modal.body').css({
-        //        width: 'auto',
-        //        height: 'auto',
-        //        'max-height': '100%'
-
-        //    })
-        //});
     </script>
 
     <script>
@@ -52,7 +44,7 @@
                 var monthValue = $("#monthSelect").val();
                 $.get(
                 {
-                    url: '@Url.Action("GetModalChart")' + '?month=' + 9,
+                    url: '@Url.Action("GetModalChart")',
                     success: function (data) {
                         $("#modalContainer").html(data);
                     }

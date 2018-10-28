@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using ExpensesManager.Models;
 using ExpensesManager.Services;
 using ExpensesManager.ViewModels;
-using ExpensesManager.Validators;
 
 namespace ExpensesManager.Controllers
 {

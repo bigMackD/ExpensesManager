@@ -8,7 +8,7 @@ namespace ExpensesManager.Services
     {
         IEnumerable<ExpenseViewModel> GetAllExpenses();
         EditExpenseViewModel Get(int id);
-        Expense Add(AddExpenseViewModel newExpense);
+        AddExpenseViewModel Add(AddExpenseViewModel newExpense);
         void Remove(Expense expense);
         void Edit(EditExpenseViewModel editedExpense);
         object GetExpensesByCategory(int value);
