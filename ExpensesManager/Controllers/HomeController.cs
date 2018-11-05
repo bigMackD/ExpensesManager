@@ -43,7 +43,7 @@ namespace ExpensesManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove(Expense expense)
+        public IActionResult Remove(EditExpenseViewModel expense)
         {
             _expenseData.Remove(expense);
             return RedirectToAction("Index");
@@ -59,7 +59,7 @@ namespace ExpensesManager.Controllers
         [HttpPost]
         public IActionResult Edit (EditExpenseViewModel expense)
         {
-            Validate(expense);
+          
             if (ModelState.IsValid)
             {
                 _expenseData.Edit(expense);

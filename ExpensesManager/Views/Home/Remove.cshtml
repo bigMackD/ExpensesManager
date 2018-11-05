@@ -1,10 +1,10 @@
 ﻿
-@model Expense
+@model ExpensesManager.ViewModels.EditExpenseViewModel
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Remove</h2>
+<h2>Are you sure?</h2>
 
 <form method="post">
     <table class="table">
@@ -27,6 +27,6 @@
             <td><span asp-validation-for="Amount"></span></td>
         </tr>
     </table>
-    <input type="submit" value="Remove" class="btn-danger"/>
+    <input type="submit" value="Remove" class="btn btn-danger"/>
 </form>
 

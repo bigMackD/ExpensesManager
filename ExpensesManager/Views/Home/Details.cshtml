@@ -1,4 +1,4 @@
-﻿@model ExpensesManager.ViewModels.ExpenseViewModel
+﻿@model ExpensesManager.ViewModels.EditExpenseViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -15,7 +15,7 @@
     </tr>
     <tr>
         <td>@Html.LabelFor(x => x.Date)</td>
-        <td>@Model.Date.ToShortDateString()</td>
+        <td>@Model.Date.Value.ToShortDateString()</td>
     </tr>
 </table>
 @Html.ActionLink("Back", "Index", null, null, new { @class = "btn btn-info" })

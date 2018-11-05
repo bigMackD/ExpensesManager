@@ -33,7 +33,7 @@ namespace ExpensesManager
 
             services.AddDbContext<ExpensesManagerDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("ExpansesManager")));
             services.AddScoped<IExpenseData, SqlExpenseData>();
-            services.AddScoped<IValidator<AddExpenseViewModel>, AddExpenseValidator>();
+            
             
             // services.AddSingleton<IExpenseData, MemoryExpansesData>();
 

@@ -9,7 +9,7 @@ namespace ExpensesManager.Services
         IEnumerable<ExpenseViewModel> GetAllExpenses();
         EditExpenseViewModel Get(int id);
         AddExpenseViewModel Add(AddExpenseViewModel newExpense);
-        void Remove(Expense expense);
+        void Remove(EditExpenseViewModel expense);
         void Edit(EditExpenseViewModel editedExpense);
         object GetExpensesByCategory(int value);
         Dictionary<CategoryType,decimal> GetExpensesByMonth(int month);

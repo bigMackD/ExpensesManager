@@ -89,8 +89,9 @@ namespace ExpensesManager.Services
             }).ToList();
         }
 
-        public void Remove(Expense expense)
+        public void Remove(EditExpenseViewModel expenseToBeRemoved)
         {
+            var expense = _context.Expenses.SingleOrDefault(x => x.Id == expenseToBeRemoved.Id);
             _context.Expenses.Remove(expense);
             _context.SaveChanges();
         }
